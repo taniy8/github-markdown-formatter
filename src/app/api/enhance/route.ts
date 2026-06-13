@@ -24,7 +24,9 @@ Rules:
 - Do NOT invent or add any new information
 - Fix grammar and capitalisation
 - Improve sentence clarity
-- Keep all bullet points, code identifiers in backticks, and issue references
+- Keep all bullet points, code identifiers in backticks, and issue references exactly as they are
+- ALWAYS add a blank line between a bullet list and an issue reference like "Fixes #123"
+- Preserve all blank lines between sections
 - Return only the improved markdown, nothing else
 - No explanations, no preamble, just the markdown`,
         },

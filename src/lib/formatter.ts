@@ -24,19 +24,16 @@ function formatLine(line: string): string {
   line = fixIssueReferences(line);
   line = wrapCodeIdentifiers(line);
   line = convertToBullet(line);
+  line = capitalizeSentence(line);
 
   return line;
 }
 
 function fixIssueReferences(line: string): string {
-  return line.replace(
-    /(fixes|closes|related to)\s+#?(\d+)/gi,
-    (_, keyword, number) => {
-      const capitalized =
-        keyword.charAt(0).toUpperCase() + keyword.slice(1).toLowerCase();
-      return `${capitalized} #${number}`;
-    }
-  );
+  return line.replace(/(fixes|closes|related to)\s+#?(\d+)/gi, (_, keyword, number) => {
+    const capitalized = keyword.charAt(0).toUpperCase() + keyword.slice(1).toLowerCase();
+    return `${capitalized} #${number}`;
+  });
 }
 
 function wrapCodeIdentifiers(line: string): string {
@@ -50,28 +47,28 @@ function wrapCodeIdentifiers(line: string): string {
 
 function convertToBullet(line: string): string {
   const actionVerbs = [
-    "added",
-    "updated",
-    "fixed",
-    "removed",
-    "changed",
-    "passed",
-    "implemented",
-    "refactored",
-    "created",
-    "moved",
-    "renamed",
+    "added", "updated", "fixed", "removed", "changed", "passed",
+    "implemented", "refactored", "created", "moved", "renamed",
+    "improved", "replaced", "deleted", "migrated", "extracted",
+    "simplified", "optimized", "resolved", "handled", "wrapped",
   ];
 
   const verbPattern = new RegExp(`^(${actionVerbs.join("|")})\\s+(.+)`, "i");
   const match = line.match(verbPattern);
 
   if (match) {
-    const verb =
-      match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
+    const verb = match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
     const rest = match[2];
     return `- ${verb} ${rest}`;
   }
 
   return line;
+}
+
+function capitalizeSentence(line: string): string {
+  if (!line) return "";
+
+  if (line.startsWith("-") || /^(Fixes|Closes|Related)/.test(line)) return line;
+
+  return line.charAt(0).toUpperCase() + line.slice(1);
 }
