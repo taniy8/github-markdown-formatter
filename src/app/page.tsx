@@ -80,16 +80,17 @@ export default function Home() {
           gap: "16px",
         }}
       >
+        <p style={{ fontSize: "13px", color: "#8b949e", margin: 0 }}>
+          Paste raw notes. Get clean GitHub markdown.
+        </p>
+
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "16px",
           }}
         >
-          <p style={{ fontSize: "13px", color: "#8b949e", margin: 0 }}>
-            Paste raw notes. Get clean GitHub markdown.
-          </p>
           <div style={{ display: "flex", gap: "8px" }}>
             {[
               { key: "pr", label: "Simple PR" },
@@ -112,6 +113,40 @@ export default function Home() {
                 {label}
               </button>
             ))}
+          </div>
+          <div
+            style={{ display: "flex", gap: "8px", justifyContent: "flex-end" }}
+          >
+            <button
+              onClick={handleDownload}
+              disabled={!output}
+              style={{
+                fontSize: "12px",
+                padding: "5px 12px",
+                borderRadius: "6px",
+                border: "1px solid #30363d",
+                backgroundColor: "#21262d",
+                color: !output ? "#484f58" : "#8b949e",
+                cursor: !output ? "not-allowed" : "pointer",
+              }}
+            >
+              ↓ Download
+            </button>
+            <button
+              onClick={handleCopy}
+              disabled={!output}
+              style={{
+                fontSize: "12px",
+                padding: "5px 12px",
+                borderRadius: "6px",
+                border: copied ? "1px solid #2ea043" : "1px solid #30363d",
+                backgroundColor: copied ? "#1a4428" : "#21262d",
+                color: !output ? "#484f58" : copied ? "#3fb950" : "#8b949e",
+                cursor: !output ? "not-allowed" : "pointer",
+              }}
+            >
+              {copied ? "✓ Copied" : "Copy"}
+            </button>
           </div>
         </div>
 
@@ -159,57 +194,17 @@ export default function Home() {
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-            <div
+            <span
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
+                fontSize: "12px",
+                color: "#8b949e",
+                fontWeight: 500,
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
               }}
             >
-              <span
-                style={{
-                  fontSize: "12px",
-                  color: "#8b949e",
-                  fontWeight: 500,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.05em",
-                }}
-              >
-                Preview
-              </span>
-              <div style={{ display: "flex", gap: "8px" }}>
-                <button
-                  onClick={handleDownload}
-                  disabled={!output}
-                  style={{
-                    fontSize: "12px",
-                    padding: "5px 12px",
-                    borderRadius: "6px",
-                    border: "1px solid #30363d",
-                    backgroundColor: "#21262d",
-                    color: !output ? "#484f58" : "#8b949e",
-                    cursor: !output ? "not-allowed" : "pointer",
-                  }}
-                >
-                  ↓ Download
-                </button>
-                <button
-                  onClick={handleCopy}
-                  disabled={!output}
-                  style={{
-                    fontSize: "12px",
-                    padding: "5px 12px",
-                    borderRadius: "6px",
-                    border: copied ? "1px solid #2ea043" : "1px solid #30363d",
-                    backgroundColor: copied ? "#1a4428" : "#21262d",
-                    color: !output ? "#484f58" : copied ? "#3fb950" : "#8b949e",
-                    cursor: !output ? "not-allowed" : "pointer",
-                  }}
-                >
-                  {copied ? "✓ Copied" : "Copy"}
-                </button>
-              </div>
-            </div>
+              Preview
+            </span>
             <div
               style={{
                 flex: 1,

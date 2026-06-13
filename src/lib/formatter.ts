@@ -30,7 +30,7 @@ function formatLine(line: string): string {
 
 function fixIssueReferences(line: string): string {
   return line.replace(
-    /\b(fixes|closes|related to)\s+#?(\d+)\b/gi,
+    /(fixes|closes|related to)\s+#?(\d+)/gi,
     (_, keyword, number) => {
       const capitalized =
         keyword.charAt(0).toUpperCase() + keyword.slice(1).toLowerCase();
