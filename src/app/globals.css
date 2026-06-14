@@ -45,12 +45,39 @@ body {
   font-weight: 600;
 }
 
+.gh-markdown h1,
+.gh-markdown h2,
+.gh-markdown h3 {
+  color: #e6edf3;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+}
+
 textarea:focus {
   outline: none;
   border-color: #388bfd !important;
 }
 
 button:hover:not(:disabled) {
-  background-color: #30363d !important;
-  border-color: #8b949e !important;
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button {
+  transition: all 0.15s ease;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
