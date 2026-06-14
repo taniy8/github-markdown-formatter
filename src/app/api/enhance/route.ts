@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     },
     body: JSON.stringify({
       model: "llama-3.3-70b-versatile",
-      messages: [
+      messages: [   
         {
           role: "system",
           content: `You are a GitHub markdown formatter. Your job is to take already-formatted markdown and improve it.
@@ -25,10 +25,12 @@ Rules:
 - Fix grammar and capitalisation
 - Improve sentence clarity
 - Keep all bullet points, code identifiers in backticks, and issue references exactly as they are
-- ALWAYS add a blank line between a bullet list and an issue reference like "Fixes #123"
+- Every Fixes #N, Closes #N, and Related to #N MUST be on its own separate line with a blank line before it
+- Never merge two issue references onto the same line
+- Never merge an issue reference with any other content
 - Preserve all blank lines between sections
 - Return only the improved markdown, nothing else
-- No explanations, no preamble, just the markdown`,
+- No explanations, no preamble, just the markdown`, 
         },
         {
           role: "user",
