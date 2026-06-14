@@ -1,53 +1,94 @@
 # GitHub Markdown Formatter
 
-Transform messy developer notes into clean, structured GitHub-flavored markdown.
+Transform raw developer notes into clean, structured GitHub-flavored Markdown in real time.
 
-## What it does
+<p align="center">
+  <img src="./public/Screencast From 2026-06-14 13-26-32.gif" alt="GitHub Markdown Formatter Demo" />
+</p>
 
-Paste raw notes like this:
-fixed bug with gradient colors
+## Overview
 
-added gradient_stops to schema
-
-fixes 123
-Get back clean markdown instantly:
-
-```markdown
-- Fixed bug with gradient colors
-- Added `gradient_stops` to schema
-
-Fixes #123
-```
+GitHub Markdown Formatter is a developer tool that converts raw, unstructured notes into clean, readable GitHub-flavored Markdown. It combines a deterministic rule-based formatting pipeline with an optional AI enhancement mode for improved grammar and readability while preserving technical intent.
 
 ## Features
 
-- Detects action verbs → bullet points
-- Wraps code identifiers in backticks automatically
-- Converts issue references (`fixes 123` → `Fixes #123`)
-- Live GitHub-flavored markdown preview
-- PR and Bug Report templates
-- Copy to clipboard / Download as `.md`
-- Auto-saves draft to localStorage
+- Rule-based formatting pipeline
+- Automatic bullet generation
+- Issue reference detection
+- Code identifier wrapping with backticks
+- Sentence capitalization and cleanup
+- Optional AI enhancement powered by Groq (Llama 3.3 70B)
+- Live GitHub-flavored Markdown preview
+- Built-in PR and Bug Report templates
+- Automatic draft persistence
+- Copy to clipboard
+- Download formatted output as `.md`
 
-## Stack
+## Example
 
-Next.js · TypeScript · Tailwind CSS · react-markdown
+### Input
+
+```text
+fixed critical bug in authService
+added JWT validation to middleware
+refactored userController to use async await
+updated README.md with setup instructions
+fixes 287
+closes 301
+```
+
+### Output
+
+```md
+- Fixed critical bug in `authService`
+- Added JWT validation to `middleware`
+- Refactored `userController` to use async/await
+- Updated `README.md` with setup instructions
+
+Fixes #287
+
+Closes #301
+```
+
+## Tech Stack
+
+- Next.js 15
+- TypeScript
+- Tailwind CSS
+- React Markdown
+- remark-gfm
+- Groq API
+- Vercel
 
 ## Getting Started
+
+Clone the repository:
 
 ```bash
 git clone https://github.com/taniy8/github-markdown-formatter.git
 cd github-markdown-formatter
+```
+
+Install dependencies:
+
+```bash
 npm install
+```
+
+Create a `.env.local` file:
+
+```env
+GROQ_API_KEY=your_groq_api_key
+```
+
+Start the development server:
+
+```bash
 npm run dev
 ```
 
-## Roadmap
-
-- [ ] AI mode via Claude API
-- [ ] Dark mode
-- [ ] Deploy to Vercel
+Open `http://localhost:3000` in your browser.
 
 ## License
 
-MIT © [taniy8](https://github.com/taniy8)
+MIT
