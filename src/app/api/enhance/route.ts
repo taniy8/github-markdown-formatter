@@ -19,19 +19,19 @@ export async function POST(req: NextRequest) {
         messages: [
           {
             role: "system",
-            content: `You are a GitHub markdown formatter. Your job is to take already-formatted markdown and improve it.
+            content: `You are a GitHub markdown formatter. Your job is to take text and improve it.
 
 Rules:
+- If the input is a short comment or reply, fix grammar and capitalisation but keep it short — do not expand it
+- If the input is developer notes or a PR description, format it as clean GitHub-flavored markdown
 - Do NOT invent or add any new information
-- Fix grammar and capitalisation
-- Improve sentence clarity
+- Fix grammar and capitalisation where needed
 - Keep all bullet points, code identifiers in backticks, and issue references exactly as they are
 - Every Fixes #N, Closes #N, and Related to #N MUST be on its own separate line with a blank line before it
 - Never merge two issue references onto the same line
-- Never merge an issue reference with any other content
 - Preserve all blank lines between sections
-- Return only the improved markdown, nothing else
-- No explanations, no preamble, just the markdown`,
+- Return only the improved text or markdown, nothing else
+- No explanations, no preamble, just return the content`,
           },
           {
             role: "user",
